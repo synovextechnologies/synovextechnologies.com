@@ -1,89 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synovex Technologies | AI & Agentic AI Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synovex Technologies | AI & Agentic AI Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #070b18;
+      --primary: #5b7cfa;
+      --secondary: #22d3ee;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; width: 100%; z-index: 1000;
+      background: rgba(7,11,24,0.7);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .logo span { color: var(--primary); }
+
+    nav { display: flex; gap: 28px; }
+
+    nav a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      padding-top: 120px;
+      background: url('assets/hero-ai.png') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7,11,24,0.9) 0%, rgba(7,11,24,0.6) 45%, rgba(7,11,24,0.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 640px;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(91,124,250,0.15);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 4.5vw, 58px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cta {
+      margin-top: 30px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #020617;
+    }
+
+    .btn.secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    section { padding: 20px 0; }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 60px;
+    }
+
+    /* Services */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .card img { height: 200px;width: 100%; object-fit: cover; }
+
+    .card-content { padding: 26px; }
+
+    .card h3 { margin-bottom: 10px; }
+
+    .card p { color: var(--muted); }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(91,124,250,0.6);
+    }
+
+    /* Why */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, rgba(91,124,250,0.2), rgba(34,211,238,0.15));
+      border-radius: 18px;
+      padding: 30px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Contact */
+    .contact-box {
+  background: linear-gradient(
+    135deg,
+    rgba(91, 124, 250, 0.25),
+    rgba(34, 211, 238, 0.2)
+  );
+  border-radius: 32px;
+  padding: 80px;
+  text-align: center;
+  margin: 0 auto;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.contact-box h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 20px;
+}
+
+.contact-box p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #cbd5f5;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      h1 { font-size: 34px; }
+    }
+	.apply-cta {
+  margin-top: 100px;
+  border-radius: 32px;
+  overflow: hidden;
+  min-height: 420px;
+
+  background-image: url("assets/career-apply.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Dark gradient overlay for text readability */
+.apply-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(2, 6, 23, 0.85),
+    rgba(15, 23, 42, 0.75)
+  );
+}
+
+/* Text container */
+.apply-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 720px;
+  padding: 40px;
+}
+
+.apply-overlay h2 {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+}
+
+.apply-overlay p {
+  font-size: 1.1rem;
+  color: #cbd5f5;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .apply-cta {
+    min-height: 320px;
+    border-radius: 24px;
+  }
+
+  .apply-overlay h2 {
+    font-size: 1.8rem;
+  }
+
+  .apply-overlay p {
+    font-size: 1rem;
+  }
+}
+
+  </style>
 </head>
 <body>
 
-<header class="header">
-    <div class="container nav">
-        <h2 class="logo">Synovex<span>Tech</span></h2>
-        <nav>
-            <a href="#">Services</a>
-            <a href="#">Solutions</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </div>
+<header>
+  <div class="container nav">
+    <div class="logo">Synovex<span>Tech</span></div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#services">Services</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#why">Why Us</a>
+      <a href="#careers">Careers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-    <div class="container hero-grid">
-        <div>
-            <h1>Empowering Enterprises with AI-Driven Innovation</h1>
-            <p>Turning Complex Technology into Intelligent Simplicity through Agentic AI, DevOps, Software Engineering & Support Services.</p>
-            <div class="cta">
-                <a class="btn primary">Request a Demo</a>
-                <a class="btn secondary">Talk to Experts</a>
-            </div>
-        </div>
-        <div class="hero-art">
-            <div class="gradient-box"></div>
-        </div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="badge">AI * Agentic AI * Enterprise Solutions</span>
+      <h1>Building Intelligent Systems for the Future of Enterprises</h1>
+      <p>Synovex Technologies helps enterprises accelerate growth using Agentic AI, cloud engineering, DevOps automation, and scalable software solutions.</p>
+      <div class="cta">
+        <a class="btn primary" href="#request-demo">Request Demo</a>
+        <a class="btn secondary" href="#contact">Talk to Experts</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="services">
-    <div class="container">
-        <h2 class="section-title">Our Core Services</h2>
-        <div class="grid-4">
-            <div class="card">
-                <h3>AI & Agentic AI</h3>
-                <p>Autonomous AI agents and intelligent automation for enterprise workflows.</p>
-            </div>
-            <div class="card">
-                <h3>Software Development</h3>
-                <p>Scalable, secure, cloud-native applications tailored to business needs.</p>
-            </div>
-            <div class="card">
-                <h3>DevOps & Cloud</h3>
-                <p>CI/CD pipelines, cloud transformation and reliability engineering.</p>
-            </div>
-            <div class="card">
-                <h3>Support Services</h3>
-                <p>24×7 managed services with SLA-driven performance.</p>
-            </div>
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Core Services</h2>
+    <div class="grid-4">
+      <div class="card">
+        <img src="assets/service-ai.png" alt="AI & Agentic AI">
+        <div class="card-content">
+          <h3>AI & Agentic AI</h3>
+          <p>Autonomous AI agents, copilots, and decision-making systems that execute workflows end-to-end.</p>
         </div>
-    </div>
-</section>
-
-<section class="why">
-    <div class="container">
-        <h2 class="section-title">Why Synovex Technologies</h2>
-        <div class="grid-3">
-            <div class="highlight">AI-First Engineering</div>
-            <div class="highlight">Enterprise-Grade Reliability</div>
-            <div class="highlight">Outcome-Driven Delivery</div>
+      </div>
+      <div class="card">
+        <img src="assets/service-software.png" alt="Software Engineering">
+        <div class="card-content">
+          <h3>Software Engineering</h3>
+          <p>Cloud-native platforms, APIs, and enterprise-grade applications built to scale.</p>
         </div>
+      </div>
+      <div class="card">
+        <img src="assets/service-cloud.png" alt="DevOps & Cloud">
+        <div class="card-content">
+          <h3>DevOps & Cloud</h3>
+          <p>CI/CD automation, cloud migration, infrastructure as code, and observability.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/service-support.png" alt="Managed Support">
+        <div class="card-content">
+          <h3>Managed Support</h3>
+          <p>24/7 SLA-driven managed services ensuring reliability, uptime, and security.</p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="contact">
-    <div class="container contact-box">
-        <h2>Let’s Build Intelligent Solutions</h2>
-        <p>?? Spacious Business Towers, Madhapur</p>
-        <a class="btn primary">Contact Us</a>
+<section id="solutions">
+  <div class="container">
+    <h2 class="section-title">Enterprise AI Solutions</h2>
+    <div class="grid-3">
+      <div class="highlight">AI-Powered Customer Support & Voice Bots</div>
+      <div class="highlight">Agentic Workflow Automation for Operations</div>
+      <div class="highlight">AI Copilots for Sales, HR & Engineering Teams</div>
+      <div class="highlight">Intelligent Data & Knowledge Assistants (RAG)</div>
+      <div class="highlight">Cloud & AI Modernization for Enterprises</div>
+      <div class="highlight">Secure AI Deployment & Governance</div>
     </div>
+  </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <p>© 2026 Synovex Technologies. All Rights Reserved.</p>
+<section id="why">
+  <div class="container">
+    <h2 class="section-title">Why Synovex</h2>
+    <div class="grid-3">
+      <div class="highlight">AI-First Engineering Culture</div>
+      <div class="highlight">Enterprise-Grade Security & Reliability</div>
+      <div class="highlight">Outcome-Driven Delivery Model</div>
     </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="container">
+    <h2 class="section-title">Careers at Synovex</h2>
+    <p style="text-align:center; max-width:720px; margin:0 auto 50px; color:#9ca3af;">
+      Join a team of engineers, AI researchers, and innovators building next-generation
+      Agentic AI systems for global enterprises.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <img src="assets/career-ai-engineer.png" alt="AI Engineer Career">
+        <div class="card-content">
+          <h3>AI / ML Engineer</h3>
+          <p>Build and deploy LLM-powered systems, autonomous agents, and AI workflows.</p>
+          <p><strong>Skills:</strong> Python, LLMs, RAG, LangChain, PyTorch</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="assets/career-fullstack.png" alt="Full Stack Engineer Career">
+        <div class="card-content">
+          <h3>Full Stack Engineer</h3>
+          <p>Develop scalable enterprise platforms and AI-driven web applications.</p>
+          <p><strong>Skills:</strong> React, Node.js, APIs, Cloud</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="assets/career-devops.png" alt="DevOps Engineer Career">
+        <div class="card-content">
+          <h3>DevOps / Cloud Engineer</h3>
+          <p>Design CI/CD pipelines, cloud infrastructure, and production-grade systems.</p>
+          <p><strong>Skills:</strong> AWS/GCP, Docker, Kubernetes, Terraform</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="apply-cta">
+  <div class="apply-overlay">
+    <h2>Ready to Apply?</h2>
+    <p>Take the next step in your career and build the future of AI with Synovex.</p>
+    <a class="btn primary" href="#contact">Apply Now</a>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<section id="request-demo">
+  <div class="container contact-box">
+    <h2>Request a Live Demo</h2>
+    <p>See how Agentic AI can transform your enterprise workflows and operations.</p>
+    <a class="btn primary" href="#contact">Schedule Demo</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-box">
+    <h2>Talk to Our Experts</h2>
+    <p>Spacious Business Center,Madhapur, Hyderabad - India<br>hr@synovextech.com</p>
+    <a class="btn primary">Contact Us</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Synovex Technologies. All Rights Reserved.
 </footer>
 
 </body>
